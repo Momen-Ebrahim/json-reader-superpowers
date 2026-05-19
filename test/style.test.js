@@ -14,6 +14,7 @@ test('stylesheet includes dashboard and slug page layout selectors', async () =>
     '.stat-card',
     '.slug-grid',
     '.slug-card',
+    '.table-link-pill',
     '.filter-panel',
     '.content-grid',
     '.content-card',

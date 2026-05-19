@@ -153,6 +153,7 @@ test('renderDashboard links slug cards and per-file slug counts', () => {
 
   assert.match(html, /href="alpha\.html"/);
   assert.match(html, /href="alpha\.html\?file=posts\.json"/);
+  assert.match(html, /<a class="table-link-pill" href="alpha\.html\?file=posts\.json">alpha \(2\)<\/a>/);
   assert.match(html, /alpha \(2\)/);
 });
 

@@ -181,6 +181,22 @@ th {
   text-transform: uppercase;
 }
 
+.table-link-pill {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 4px 6px 0;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid #2847c7;
+  color: #2847c7;
+  padding: 4px 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+
 @media (max-width: 680px) {
   .page-shell {
     width: min(100% - 20px, 1120px);

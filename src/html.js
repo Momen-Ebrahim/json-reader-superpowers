@@ -23,8 +23,8 @@ function renderDashboard({ stats, warnings, slugGroups, fileSummaries }) {
   const fileRows = fileSummaries
     .map((file) => {
       const slugLinks = Array.from(file.publishedSlugCounts.entries())
-        .map(([slug, count]) => `<a href="${encodeSlugFileName(slug)}.html?file=${encodeURIComponent(file.fileName)}">${escapeHtml(slug)} (${count})</a>`)
-        .join(', ');
+        .map(([slug, count]) => `<a class="table-link-pill" href="${encodeSlugFileName(slug)}.html?file=${encodeURIComponent(file.fileName)}">${escapeHtml(slug)} (${count})</a>`)
+        .join(' ');
 
       return `<tr><td>${escapeHtml(file.fileName)}</td><td>${file.validObjects}</td><td>${file.publishedObjects}</td><td>${file.draftObjects}</td><td>${slugLinks || 'No published slugs'}</td></tr>`;
     })
