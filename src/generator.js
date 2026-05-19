@@ -16,6 +16,10 @@ function validateOutputDir(outputDir) {
   return resolvedOutputDir;
 }
 
+function isOutsideDirectory(relativePath) {
+  return relativePath === '..' || relativePath.startsWith(`..${path.sep}`) || path.isAbsolute(relativePath);
+}
+
 async function cleanOutput(outputDir) {
   const resolvedOutputDir = validateOutputDir(outputDir);
   await fs.rm(resolvedOutputDir, { recursive: true, force: true });
@@ -54,8 +58,8 @@ async function buildSite({
   if (
     relativeDataPath === '' ||
     relativeOutputPath === '' ||
-    (!relativeDataPath.startsWith('..') && !path.isAbsolute(relativeDataPath)) ||
-    (!relativeOutputPath.startsWith('..') && !path.isAbsolute(relativeOutputPath))
+    !isOutsideDirectory(relativeDataPath) ||
+    !isOutsideDirectory(relativeOutputPath)
   ) {
     throw new Error('Unsafe output directory');
   }

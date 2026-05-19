@@ -72,6 +72,29 @@ test('buildSite rejects output directory that overlaps input data', async () => 
   assert.equal(await fs.readFile(sentinelPath, 'utf8'), '{}');
 });
 
+test('buildSite rejects output directory that contains data path with dot-dot prefix segment', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-'));
+  const outputDir = path.join(fixtureRoot, 'output');
+  const dataDir = path.join(outputDir, '..data');
+  const assetSourcePath = path.join(fixtureRoot, 'assets', 'style.css');
+  const sentinelPath = path.join(dataDir, 'sentinel.json');
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+  await fs.writeFile(sentinelPath, '{}');
+
+  await assert.rejects(
+    buildSite({
+      dataDir,
+      outputDir,
+      assetSourcePath,
+    }),
+    /Unsafe output directory/
+  );
+
+  assert.equal(await fs.readFile(sentinelPath, 'utf8'), '{}');
+});
+
 test('cleanOutput rejects empty output directory', async () => {
   await assert.rejects(cleanOutput(''), /Unsafe output directory/);
 });
