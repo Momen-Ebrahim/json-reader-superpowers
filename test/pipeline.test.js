@@ -147,3 +147,28 @@ test('buildDataModel returns dashboard-ready per-file stats with published slug 
     }
   ]);
 });
+
+test('buildDataModel aggregates reader and validation warnings', () => {
+  const dataDir = makeDataDir();
+  fs.writeFileSync(path.join(dataDir, 'bad-json.json'), '{');
+  fs.writeFileSync(path.join(dataDir, 'invalid-object.json'), JSON.stringify({
+    title: 'Invalid Object',
+    slug: 'broken',
+    date: 'not-a-date',
+    content: 'Invalid'
+  }));
+
+  const model = buildDataModel(dataDir);
+
+  assert.equal(model.stats.warnings, 2);
+  assert.equal(model.warnings.length, 2);
+  assert.equal(model.warnings[0].type, 'invalid-json');
+  assert.equal(model.warnings[0].file, 'bad-json.json');
+  assert.match(model.warnings[0].message, /^bad-json\.json contains invalid JSON:/);
+  assert.deepEqual(model.warnings[1], {
+    type: 'invalid-object',
+    file: 'invalid-object.json',
+    index: 0,
+    message: 'invalid-object.json item 1 has invalid date: not-a-date'
+  });
+});
