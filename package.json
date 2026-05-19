@@ -1,0 +1,10 @@
+{
+  "name": "json-reader-superpowers",
+  "version": "1.0.0",
+  "description": "Static JSON reader site generator",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
