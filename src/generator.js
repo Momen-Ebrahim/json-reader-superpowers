@@ -1,7 +1,7 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
-const { renderDashboard, renderSlugPage } = require('./html');
+const { encodeSlugFileName, renderDashboard, renderSlugPage } = require('./html');
 const { readJsonFiles } = require('./reader');
 const { validateObject } = require('./validator');
 
@@ -136,7 +136,7 @@ async function buildSite(options = {}) {
   const dashboardHtml = renderDashboard(buildState);
   await fs.writeFile(path.join(outputDir, 'dashboard.html'), dashboardHtml);
   for (const [slug, objects] of buildState.slugGroups.entries()) {
-    await fs.writeFile(path.join(outputDir, `${encodeURIComponent(slug)}.html`), renderSlugPage(slug, objects));
+    await fs.writeFile(path.join(outputDir, `${encodeSlugFileName(slug)}.html`), renderSlugPage(slug, objects));
   }
 
   return buildState;

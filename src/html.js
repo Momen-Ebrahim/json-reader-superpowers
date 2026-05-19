@@ -7,9 +7,13 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;');
 }
 
+function encodeSlugFileName(slug) {
+  return encodeURIComponent(slug).replaceAll('*', '%2A');
+}
+
 function renderDashboard({ stats, warnings, slugGroups, fileSummaries }) {
   const slugCards = Array.from(slugGroups.entries())
-    .map(([slug, objects]) => `<a class="slug-card" href="${encodeURIComponent(slug)}.html"><strong>${escapeHtml(slug)}</strong><span>${objects.length} published objects</span></a>`)
+    .map(([slug, objects]) => `<a class="slug-card" href="${encodeSlugFileName(slug)}.html"><strong>${escapeHtml(slug)}</strong><span>${objects.length} published objects</span></a>`)
     .join('');
 
   const warningItems = warnings
@@ -19,7 +23,7 @@ function renderDashboard({ stats, warnings, slugGroups, fileSummaries }) {
   const fileRows = fileSummaries
     .map((file) => {
       const slugLinks = Array.from(file.publishedSlugCounts.entries())
-        .map(([slug, count]) => `<a href="${encodeURIComponent(slug)}.html?file=${encodeURIComponent(file.fileName)}">${escapeHtml(slug)} (${count})</a>`)
+        .map(([slug, count]) => `<a href="${encodeSlugFileName(slug)}.html?file=${encodeURIComponent(file.fileName)}">${escapeHtml(slug)} (${count})</a>`)
         .join(', ');
 
       return `<tr><td>${escapeHtml(file.fileName)}</td><td>${file.validObjects}</td><td>${file.publishedObjects}</td><td>${file.draftObjects}</td><td>${slugLinks || 'No published slugs'}</td></tr>`;
@@ -188,4 +192,4 @@ function renderSlugPage(slug, objects) {
 </html>`;
 }
 
-module.exports = { escapeHtml, renderDashboard, renderSlugPage, safeJson };
+module.exports = { encodeSlugFileName, escapeHtml, renderDashboard, renderSlugPage, safeJson };

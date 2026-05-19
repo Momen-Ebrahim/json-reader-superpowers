@@ -183,6 +183,31 @@ test('renderDashboard URL-encodes slug href path segments', () => {
   assert.match(html, />javascript:alert\(1\)\/\/ \(1\)<\/a>/);
 });
 
+test('renderDashboard encodes wildcard characters in slug href file names', () => {
+  const html = renderDashboard({
+    stats: {
+      filesRead: 1,
+      validObjects: 1,
+      publishedObjects: 1,
+      draftObjects: 0,
+      uniquePublishedSlugs: 1,
+      warningCount: 0,
+    },
+    warnings: [],
+    slugGroups: new Map([['a*b', [{ title: 'Wildcard' }]]]),
+    fileSummaries: [{
+      fileName: 'posts.json',
+      validObjects: 1,
+      publishedObjects: 1,
+      draftObjects: 0,
+      publishedSlugCounts: new Map([['a*b', 1]]),
+    }],
+  });
+
+  assert.match(html, /href="a%2Ab\.html"/);
+  assert.match(html, /href="a%2Ab\.html\?file=posts\.json"/);
+});
+
 test('buildSite writes one page for each unique published slug', async () => {
   const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-slugs-'));
   const dataDir = path.join(fixtureRoot, 'data');
@@ -216,13 +241,16 @@ test('buildSite writes encoded slug file names inside the output directory', asy
   await fs.writeFile(path.join(dataDir, 'posts.json'), JSON.stringify([
     { title: 'Unsafe', slug: 'javascript:alert(1)//', date: '2026-05-18', content: 'Unsafe body' },
     { title: 'Traversal', slug: '../outside', date: '2026-05-18', content: 'Traversal body' },
+    { title: 'Wildcard', slug: 'a*b', date: '2026-05-18', content: 'Wildcard body' },
   ]));
 
   await buildSite({ dataDir, outputDir, assetSourcePath });
 
   const unsafe = await fs.readFile(path.join(outputDir, 'javascript%3Aalert(1)%2F%2F.html'), 'utf8');
   const traversal = await fs.readFile(path.join(outputDir, '..%2Foutside.html'), 'utf8');
+  const wildcard = await fs.readFile(path.join(outputDir, 'a%2Ab.html'), 'utf8');
   await assert.rejects(fs.readFile(path.join(fixtureRoot, 'outside.html'), 'utf8'), /ENOENT/);
   assert.match(unsafe, /Unsafe body/);
   assert.match(traversal, /Traversal body/);
+  assert.match(wildcard, /Wildcard body/);
 });
