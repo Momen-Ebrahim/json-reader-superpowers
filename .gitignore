@@ -1,3 +1,4 @@
 node_modules/
 output/
+.worktrees/
 .DS_Store
