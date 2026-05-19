@@ -10,7 +10,7 @@ This progress file is based on the current source and test files, not the unchec
 | --- | --- | --- | --- |
 | `2026-05-19-json-reader-static-generator-design.md` | Mostly done | Package scripts, dashboard renderer, generator orchestration, CLI entrypoint, source stylesheet | None obvious from this plan; implementation includes extra output-safety checks |
 | `2026-05-19-json-reader-architecture-data.md` | Done | JSON reader, validator, build-state collection, dashboard slug/file links | None obvious from this plan |
-| `2026-05-19-json-reader-generated-pages.md` | Not done | None of the slug-page generation tasks are implemented | `renderSlugPage`, generated `<slug>.html` files, slug-page tests, URL query behavior |
+| `2026-05-19-json-reader-generated-pages.md` | Done | `renderSlugPage`, safe JSON embedding, generated slug HTML files, slug-page tests, URL query behavior, encoded slug filenames | None obvious from this plan; implementation includes extra filename-safety coverage |
 | `2026-05-19-json-reader-output-styling.md` | Partial | Output cleanup implementation exists, dashboard uses local stylesheet, basic responsive dashboard CSS exists | Planned cleanup/local asset tests, slug-page styles, `style.test.js`, final responsive CSS |
 | `2026-05-19-json-reader-errors-testing.md` | Partial | Reader warnings, validation warnings, dashboard warning rendering, draft exclusion in core pipeline | Missing planned tests, injectable CLI logger/build options, integration test, slug-page related behavior |
 
@@ -56,27 +56,23 @@ Notes:
 
 ### `2026-05-19-json-reader-generated-pages.md`
 
-Status: not done.
+Status: done.
 
 Implemented:
 
-- No slug-page renderer is present.
-- No slug-page generation is present.
-- No slug-page tests are present.
+- Task 1: `src/html.js` exports `renderSlugPage`, `safeJson`, and `encodeSlugFileName`.
+- Task 1: `test/slug-page.test.js` covers slug headings, counts, controls, file options, object cards, raw content rendering, and embedded JSON payloads.
+- Task 2: `src/generator.js` imports `renderSlugPage` and writes one slug HTML file for each published `slugGroups` entry.
+- Task 2: `test/generator.test.js` covers generated slug files, draft exclusion, encoded slug filenames, and path-like slug safety.
+- Task 3: `test/slug-page.test.js` covers the file query-parameter script snippets for reading and updating `?file=`.
 
 Remaining:
 
-- Task 1: Add `renderSlugPage` and `safeJson` to `src/html.js`.
-- Task 1: Create `test/slug-page.test.js`.
-- Task 2: Update `src/generator.js` to import `renderSlugPage` and write one `<slug>.html` file per published slug group.
-- Task 2: Add generated slug file coverage to `test/generator.test.js`.
-- Task 3: Add URL query behavior assertions for file filtering.
+- None obvious from this plan.
 
-Evidence:
+Notes:
 
-- `src/html.js` only exports `escapeHtml` and `renderDashboard`.
-- `src/generator.js` only writes `dashboard.html` and never writes slug HTML files.
-- No `test/slug-page.test.js` exists.
+- Generated slug filenames use `encodeSlugFileName(slug)`, which matches dashboard hrefs and additionally encodes `*` as `%2A` so valid slugs do not create invalid Windows filenames.
 
 ### `2026-05-19-json-reader-output-styling.md`
 
@@ -93,7 +89,6 @@ Remaining:
 
 - Task 1: Add the planned stale-file cleanup regression test.
 - Task 2: Add the planned local asset assertions for generated dashboard and slug pages.
-- Task 2: Slug-page asset-link coverage depends on generated pages being implemented first.
 - Task 3: Add slug-page CSS selectors such as `.filter-panel`, `.content-grid`, `.content-card`, `.content-body`, `.tags`, and `.empty-state`.
 - Task 3: Create `test/style.test.js`.
 - Task 3: Replace or expand the stylesheet with the complete responsive CSS from the plan.
@@ -102,7 +97,7 @@ Evidence:
 
 - `src/assets/style.css` does not currently include slug-page selectors like `.filter-panel`, `.content-card`, `.content-body`, `.tags`, or `.empty-state`.
 - No `test/style.test.js` exists.
-- Slug pages do not exist yet, so slug-page asset-link assertions cannot pass yet.
+- Slug pages now exist, so slug-page asset-link assertions can be added.
 
 ### `2026-05-19-json-reader-errors-testing.md`
 
@@ -123,7 +118,6 @@ Remaining:
 - Task 3: Change `main` to accept injected `buildOptions` and `logger` if that testability requirement is still wanted.
 - Task 3: Create `test/cli.test.js`.
 - Task 4: Create `test/integration.test.js`.
-- Task 4: Implement slug-page generation before the planned integration test can pass.
 
 Notes:
 
@@ -138,16 +132,15 @@ Present:
 - `test/validator.test.js`
 - `test/data-pipeline.test.js`
 - `test/generator.test.js`
+- `test/slug-page.test.js`
 
 Missing from plans:
 
-- `test/slug-page.test.js`
 - `test/style.test.js`
 - `test/cli.test.js`
 - `test/integration.test.js`
 
 ## Recommended Next Work
 
-1. Implement `2026-05-19-json-reader-generated-pages.md` because later styling and integration tasks depend on slug pages.
-2. Finish `2026-05-19-json-reader-output-styling.md` after slug pages exist.
-3. Finish the missing tests from `2026-05-19-json-reader-errors-testing.md`, deciding first whether the CLI should keep the current default-data-directory creation behavior or switch to the injectable API from the plan.
+1. Finish `2026-05-19-json-reader-output-styling.md` now that slug pages exist.
+2. Finish the missing tests from `2026-05-19-json-reader-errors-testing.md`, deciding first whether the CLI should keep the current default-data-directory creation behavior or switch to the injectable API from the plan.
