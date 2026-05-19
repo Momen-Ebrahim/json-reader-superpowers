@@ -303,3 +303,55 @@ test('generated HTML links only to the shared local stylesheet', async () => {
   assert.doesNotMatch(dashboard + slug, /\b(?:href|src)\s*=\s*["'](?:https?:)?\/\//i);
   assert.doesNotMatch(dashboard + slug, /<script\b[^>]*\bsrc\s*=/i);
 });
+
+test('buildSite succeeds with missing data folder and generates only dashboard plus stylesheet', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-missing-data-'));
+  const outputDir = path.join(fixtureRoot, 'output');
+  const assetSourcePath = path.join(fixtureRoot, 'src', 'assets', 'style.css');
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+
+  const result = await buildSite({
+    dataDir: path.join(fixtureRoot, 'data'),
+    outputDir,
+    assetSourcePath,
+  });
+
+  const generatedFiles = await fs.readdir(outputDir);
+  const dashboard = await fs.readFile(path.join(outputDir, 'dashboard.html'), 'utf8');
+
+  assert.deepEqual(result.stats, {
+    filesRead: 0,
+    validObjects: 0,
+    publishedObjects: 0,
+    draftObjects: 0,
+    uniquePublishedSlugs: 0,
+    warningCount: 1,
+  });
+  assert.deepEqual(generatedFiles.sort(), ['assets', 'dashboard.html']);
+  assert.match(dashboard, /Data folder not found: data/);
+  assert.match(dashboard, /0 JSON files read/);
+});
+
+test('buildSite generates no slug pages when there are no published objects', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-no-published-'));
+  const dataDir = path.join(fixtureRoot, 'data');
+  const outputDir = path.join(fixtureRoot, 'output');
+  const assetSourcePath = path.join(fixtureRoot, 'src', 'assets', 'style.css');
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+  await fs.writeFile(path.join(dataDir, 'drafts.json'), JSON.stringify({
+    title: 'Draft',
+    slug: 'draft-only',
+    date: '2026-05-18',
+    content: 'Hidden',
+    draft: true,
+  }));
+
+  await buildSite({ dataDir, outputDir, assetSourcePath });
+
+  await assert.rejects(fs.readFile(path.join(outputDir, 'draft-only.html'), 'utf8'), /ENOENT/);
+  const dashboard = await fs.readFile(path.join(outputDir, 'dashboard.html'), 'utf8');
+  assert.match(dashboard, /No published slugs found/);
+});

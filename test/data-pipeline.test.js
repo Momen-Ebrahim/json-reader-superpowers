@@ -63,3 +63,20 @@ test('collectBuildState records invalid object warnings and file summaries', asy
     publishedSlugCounts: new Map([['good', 1]]),
   }]);
 });
+
+test('collectBuildState counts drafts without creating published slug groups', async () => {
+  const dataDir = await writeFixture({
+    'drafts.json': [
+      { title: 'Draft One', slug: 'drafts', date: '2026-05-18', content: 'Hidden', draft: true },
+      { title: 'Draft Two', slug: 'drafts', date: '2026-05-19', content: 'Hidden', draft: true },
+    ],
+  });
+
+  const state = await collectBuildState(dataDir);
+
+  assert.equal(state.stats.validObjects, 2);
+  assert.equal(state.stats.publishedObjects, 0);
+  assert.equal(state.stats.draftObjects, 2);
+  assert.equal(state.stats.uniquePublishedSlugs, 0);
+  assert.equal(state.slugGroups.size, 0);
+});

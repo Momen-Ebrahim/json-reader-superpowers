@@ -1,0 +1,1157 @@
+[
+  {
+    "title": "July guides item 001",
+    "slug": "guides",
+    "date": "2026-07-01",
+    "content": "<p>Sample guides content 001 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 002",
+    "slug": "posts",
+    "date": "2026-07-02",
+    "content": "<p>Sample posts content 002 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 003",
+    "slug": "emails",
+    "date": "2026-07-03",
+    "content": "<p>Sample emails content 003 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 004",
+    "slug": "products",
+    "date": "2026-07-04",
+    "content": "<p>Sample products content 004 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 005",
+    "slug": "news",
+    "date": "2026-07-05",
+    "content": "<p>Sample news content 005 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 006",
+    "slug": "guides",
+    "date": "2026-07-06",
+    "content": "<p>Sample guides content 006 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 007",
+    "slug": "posts",
+    "date": "2026-07-07",
+    "content": "<p>Sample posts content 007 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 008",
+    "slug": "emails",
+    "date": "2026-07-08",
+    "content": "<p>Sample emails content 008 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 009",
+    "slug": "products",
+    "date": "2026-07-09",
+    "content": "<p>Sample products content 009 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 010",
+    "slug": "news",
+    "date": "2026-07-10",
+    "content": "<p>Sample news content 010 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 011",
+    "slug": "guides",
+    "date": "2026-07-11",
+    "content": "<p>Sample guides content 011 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 012",
+    "slug": "posts",
+    "date": "2026-07-12",
+    "content": "<p>Sample posts content 012 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 013",
+    "slug": "emails",
+    "date": "2026-07-13",
+    "content": "<p>Sample emails content 013 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 014",
+    "slug": "products",
+    "date": "2026-07-14",
+    "content": "<p>Sample products content 014 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 015",
+    "slug": "news",
+    "date": "2026-07-15",
+    "content": "<p>Sample news content 015 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 016",
+    "slug": "guides",
+    "date": "2026-07-16",
+    "content": "<p>Sample guides content 016 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 017",
+    "slug": "posts",
+    "date": "2026-07-17",
+    "content": "<p>Sample posts content 017 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": true
+  },
+  {
+    "title": "July emails item 018",
+    "slug": "emails",
+    "date": "2026-07-18",
+    "content": "<p>Sample emails content 018 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 019",
+    "slug": "products",
+    "date": "2026-07-19",
+    "content": "<p>Sample products content 019 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 020",
+    "slug": "news",
+    "date": "2026-07-20",
+    "content": "<p>Sample news content 020 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 021",
+    "slug": "guides",
+    "date": "2026-07-21",
+    "content": "<p>Sample guides content 021 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 022",
+    "slug": "posts",
+    "date": "2026-07-22",
+    "content": "<p>Sample posts content 022 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 023",
+    "slug": "emails",
+    "date": "2026-07-23",
+    "content": "<p>Sample emails content 023 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 024",
+    "slug": "products",
+    "date": "2026-07-24",
+    "content": "<p>Sample products content 024 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 025",
+    "slug": "news",
+    "date": "2026-07-25",
+    "content": "<p>Sample news content 025 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 026",
+    "slug": "guides",
+    "date": "2026-07-26",
+    "content": "<p>Sample guides content 026 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 027",
+    "slug": "posts",
+    "date": "2026-07-27",
+    "content": "<p>Sample posts content 027 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 028",
+    "slug": "emails",
+    "date": "2026-07-28",
+    "content": "<p>Sample emails content 028 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 029",
+    "slug": "products",
+    "date": "2026-07-01",
+    "content": "<p>Sample products content 029 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 030",
+    "slug": "news",
+    "date": "2026-07-02",
+    "content": "<p>Sample news content 030 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 031",
+    "slug": "guides",
+    "date": "2026-07-03",
+    "content": "<p>Sample guides content 031 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 032",
+    "slug": "posts",
+    "date": "2026-07-04",
+    "content": "<p>Sample posts content 032 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 033",
+    "slug": "emails",
+    "date": "2026-07-05",
+    "content": "<p>Sample emails content 033 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 034",
+    "slug": "products",
+    "date": "2026-07-06",
+    "content": "<p>Sample products content 034 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": true
+  },
+  {
+    "title": "July news item 035",
+    "slug": "news",
+    "date": "2026-07-07",
+    "content": "<p>Sample news content 035 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 036",
+    "slug": "guides",
+    "date": "2026-07-08",
+    "content": "<p>Sample guides content 036 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 037",
+    "slug": "posts",
+    "date": "2026-07-09",
+    "content": "<p>Sample posts content 037 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 038",
+    "slug": "emails",
+    "date": "2026-07-10",
+    "content": "<p>Sample emails content 038 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 039",
+    "slug": "products",
+    "date": "2026-07-11",
+    "content": "<p>Sample products content 039 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 040",
+    "slug": "news",
+    "date": "2026-07-12",
+    "content": "<p>Sample news content 040 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 041",
+    "slug": "guides",
+    "date": "2026-07-13",
+    "content": "<p>Sample guides content 041 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 042",
+    "slug": "posts",
+    "date": "2026-07-14",
+    "content": "<p>Sample posts content 042 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 043",
+    "slug": "emails",
+    "date": "2026-07-15",
+    "content": "<p>Sample emails content 043 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 044",
+    "slug": "products",
+    "date": "2026-07-16",
+    "content": "<p>Sample products content 044 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 045",
+    "slug": "news",
+    "date": "2026-07-17",
+    "content": "<p>Sample news content 045 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 046",
+    "slug": "guides",
+    "date": "2026-07-18",
+    "content": "<p>Sample guides content 046 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 047",
+    "slug": "posts",
+    "date": "2026-07-19",
+    "content": "<p>Sample posts content 047 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 048",
+    "slug": "emails",
+    "date": "2026-07-20",
+    "content": "<p>Sample emails content 048 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 049",
+    "slug": "products",
+    "date": "2026-07-21",
+    "content": "<p>Sample products content 049 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 050",
+    "slug": "news",
+    "date": "2026-07-22",
+    "content": "<p>Sample news content 050 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 051",
+    "slug": "guides",
+    "date": "2026-07-23",
+    "content": "<p>Sample guides content 051 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": true
+  },
+  {
+    "title": "July posts item 052",
+    "slug": "posts",
+    "date": "2026-07-24",
+    "content": "<p>Sample posts content 052 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 053",
+    "slug": "emails",
+    "date": "2026-07-25",
+    "content": "<p>Sample emails content 053 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 054",
+    "slug": "products",
+    "date": "2026-07-26",
+    "content": "<p>Sample products content 054 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 055",
+    "slug": "news",
+    "date": "2026-07-27",
+    "content": "<p>Sample news content 055 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 056",
+    "slug": "guides",
+    "date": "2026-07-28",
+    "content": "<p>Sample guides content 056 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 057",
+    "slug": "posts",
+    "date": "2026-07-01",
+    "content": "<p>Sample posts content 057 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 058",
+    "slug": "emails",
+    "date": "2026-07-02",
+    "content": "<p>Sample emails content 058 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 059",
+    "slug": "products",
+    "date": "2026-07-03",
+    "content": "<p>Sample products content 059 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 060",
+    "slug": "news",
+    "date": "2026-07-04",
+    "content": "<p>Sample news content 060 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 061",
+    "slug": "guides",
+    "date": "2026-07-05",
+    "content": "<p>Sample guides content 061 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 062",
+    "slug": "posts",
+    "date": "2026-07-06",
+    "content": "<p>Sample posts content 062 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 063",
+    "slug": "emails",
+    "date": "2026-07-07",
+    "content": "<p>Sample emails content 063 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 064",
+    "slug": "products",
+    "date": "2026-07-08",
+    "content": "<p>Sample products content 064 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 065",
+    "slug": "news",
+    "date": "2026-07-09",
+    "content": "<p>Sample news content 065 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 066",
+    "slug": "guides",
+    "date": "2026-07-10",
+    "content": "<p>Sample guides content 066 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 067",
+    "slug": "posts",
+    "date": "2026-07-11",
+    "content": "<p>Sample posts content 067 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 068",
+    "slug": "emails",
+    "date": "2026-07-12",
+    "content": "<p>Sample emails content 068 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": true
+  },
+  {
+    "title": "July products item 069",
+    "slug": "products",
+    "date": "2026-07-13",
+    "content": "<p>Sample products content 069 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 070",
+    "slug": "news",
+    "date": "2026-07-14",
+    "content": "<p>Sample news content 070 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 071",
+    "slug": "guides",
+    "date": "2026-07-15",
+    "content": "<p>Sample guides content 071 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 072",
+    "slug": "posts",
+    "date": "2026-07-16",
+    "content": "<p>Sample posts content 072 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 073",
+    "slug": "emails",
+    "date": "2026-07-17",
+    "content": "<p>Sample emails content 073 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 074",
+    "slug": "products",
+    "date": "2026-07-18",
+    "content": "<p>Sample products content 074 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 075",
+    "slug": "news",
+    "date": "2026-07-19",
+    "content": "<p>Sample news content 075 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 076",
+    "slug": "guides",
+    "date": "2026-07-20",
+    "content": "<p>Sample guides content 076 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 077",
+    "slug": "posts",
+    "date": "2026-07-21",
+    "content": "<p>Sample posts content 077 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 078",
+    "slug": "emails",
+    "date": "2026-07-22",
+    "content": "<p>Sample emails content 078 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 079",
+    "slug": "products",
+    "date": "2026-07-23",
+    "content": "<p>Sample products content 079 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 080",
+    "slug": "news",
+    "date": "2026-07-24",
+    "content": "<p>Sample news content 080 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 081",
+    "slug": "guides",
+    "date": "2026-07-25",
+    "content": "<p>Sample guides content 081 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 082",
+    "slug": "posts",
+    "date": "2026-07-26",
+    "content": "<p>Sample posts content 082 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 083",
+    "slug": "emails",
+    "date": "2026-07-27",
+    "content": "<p>Sample emails content 083 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 084",
+    "slug": "products",
+    "date": "2026-07-28",
+    "content": "<p>Sample products content 084 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 085",
+    "slug": "news",
+    "date": "2026-07-01",
+    "content": "<p>Sample news content 085 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": true
+  },
+  {
+    "title": "July guides item 086",
+    "slug": "guides",
+    "date": "2026-07-02",
+    "content": "<p>Sample guides content 086 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 087",
+    "slug": "posts",
+    "date": "2026-07-03",
+    "content": "<p>Sample posts content 087 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 088",
+    "slug": "emails",
+    "date": "2026-07-04",
+    "content": "<p>Sample emails content 088 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 089",
+    "slug": "products",
+    "date": "2026-07-05",
+    "content": "<p>Sample products content 089 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 090",
+    "slug": "news",
+    "date": "2026-07-06",
+    "content": "<p>Sample news content 090 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 091",
+    "slug": "guides",
+    "date": "2026-07-07",
+    "content": "<p>Sample guides content 091 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 092",
+    "slug": "posts",
+    "date": "2026-07-08",
+    "content": "<p>Sample posts content 092 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 093",
+    "slug": "emails",
+    "date": "2026-07-09",
+    "content": "<p>Sample emails content 093 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 094",
+    "slug": "products",
+    "date": "2026-07-10",
+    "content": "<p>Sample products content 094 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 095",
+    "slug": "news",
+    "date": "2026-07-11",
+    "content": "<p>Sample news content 095 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 096",
+    "slug": "guides",
+    "date": "2026-07-12",
+    "content": "<p>Sample guides content 096 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 097",
+    "slug": "posts",
+    "date": "2026-07-13",
+    "content": "<p>Sample posts content 097 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July emails item 098",
+    "slug": "emails",
+    "date": "2026-07-14",
+    "content": "<p>Sample emails content 098 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 099",
+    "slug": "products",
+    "date": "2026-07-15",
+    "content": "<p>Sample products content 099 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 100",
+    "slug": "news",
+    "date": "2026-07-16",
+    "content": "<p>Sample news content 100 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July guides item 101",
+    "slug": "guides",
+    "date": "2026-07-17",
+    "content": "<p>Sample guides content 101 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "how-to",
+      "docs"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July posts item 102",
+    "slug": "posts",
+    "date": "2026-07-18",
+    "content": "<p>Sample posts content 102 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "node",
+      "json"
+    ],
+    "draft": true
+  },
+  {
+    "title": "July emails item 103",
+    "slug": "emails",
+    "date": "2026-07-19",
+    "content": "<p>Sample emails content 103 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "email",
+      "campaign"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July products item 104",
+    "slug": "products",
+    "date": "2026-07-20",
+    "content": "<p>Sample products content 104 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "catalog",
+      "shop"
+    ],
+    "draft": false
+  },
+  {
+    "title": "July news item 105",
+    "slug": "news",
+    "date": "2026-07-21",
+    "content": "<p>Sample news content 105 from july. This fixture item is used to test grouping, filtering, and dashboard counts.</p>",
+    "tags": [
+      "update",
+      "release"
+    ],
+    "draft": false
+  }
+]

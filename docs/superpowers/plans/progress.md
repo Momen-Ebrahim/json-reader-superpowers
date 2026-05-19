@@ -12,7 +12,7 @@ This progress file is based on the current source and test files, not the unchec
 | `2026-05-19-json-reader-architecture-data.md` | Done | JSON reader, validator, build-state collection, dashboard slug/file links | None obvious from this plan |
 | `2026-05-19-json-reader-generated-pages.md` | Done | `renderSlugPage`, safe JSON embedding, generated slug HTML files, slug-page tests, URL query behavior, encoded slug filenames | None obvious from this plan; implementation includes extra filename-safety coverage |
 | `2026-05-19-json-reader-output-styling.md` | Done | Cleanup regression test, local asset-link assertions, slug-page/dashboard responsive CSS, `style.test.js`, regenerated output stylesheet | None obvious from this plan |
-| `2026-05-19-json-reader-errors-testing.md` | Partial | Reader warnings, validation warnings, dashboard warning rendering, draft exclusion in core pipeline | Missing planned tests, injectable CLI logger/build options, integration test, slug-page related behavior |
+| `2026-05-19-json-reader-errors-testing.md` | Done | Missing-data build coverage, no-published-object coverage, injectable CLI logger/build options, terminal warning test, full generation integration test | None obvious from this plan |
 
 ## Plan Details
 
@@ -100,28 +100,29 @@ Evidence:
 
 ### `2026-05-19-json-reader-errors-testing.md`
 
-Status: partial.
+Status: done.
 
 Implemented:
 
 - Task 1: `readJsonFiles` returns `Data folder not found: data` for an explicitly missing data directory.
 - Task 1: `collectBuildState` sets `warningCount` from `state.warnings.length`.
+- Task 1: `test/generator.test.js` covers missing data builds that generate only `dashboard.html` and `assets/style.css`.
 - Task 2: Core draft exclusion exists in `collectBuildState`; drafts are counted but not added to `slugGroups`.
-- Task 2: Dashboard rendering includes `No published slugs found.` when there are no slug groups.
-- Task 3: CLI prints warnings from `result.warnings` to `console.warn`.
+- Task 2: `test/data-pipeline.test.js` covers draft-only build state with zero published slug groups.
+- Task 2: `test/generator.test.js` covers draft-only builds that generate no slug pages and render `No published slugs found.`.
+- Task 3: `src/index.js` exposes `main({ buildOptions, logger })` while preserving default CLI stylesheet behavior.
+- Task 3: `test/cli.test.js` verifies terminal warning output through an injected logger.
+- Task 4: `test/integration.test.js` verifies sample data generation, copied stylesheet, dashboard warning details, slug links, published slug pages, ordering, and draft exclusion.
 
 Remaining:
 
-- Task 1: Add the planned missing data build test to `test/generator.test.js`.
-- Task 2: Add the planned no-published pipeline and no slug file generation tests.
-- Task 3: Change `main` to accept injected `buildOptions` and `logger` if that testability requirement is still wanted.
-- Task 3: Create `test/cli.test.js`.
-- Task 4: Create `test/integration.test.js`.
+- None obvious from this plan.
 
 Notes:
 
 - Current `buildSite()` creates the default `data/` directory when `dataDir` is omitted, so the CLI test in `test/generator.test.js` expects `Generated dashboard.html with 0 warnings.` from a fresh working directory.
-- The errors-testing plan expects an injectable CLI path that can pass an explicit missing `dataDir` and capture `Warning: Data folder not found: data`; that injectable `main({ buildOptions, logger })` API is not implemented.
+- The injectable CLI path now supports passing an explicit missing `dataDir` and capturing `Warning: Data folder not found: data` without mutating global `console`.
+- `npm test` passes with 38 tests, and `npm run build` completes successfully.
 
 ## Current Test Files
 
@@ -131,14 +132,15 @@ Present:
 - `test/validator.test.js`
 - `test/data-pipeline.test.js`
 - `test/generator.test.js`
+- `test/cli.test.js`
+- `test/integration.test.js`
 - `test/slug-page.test.js`
 - `test/style.test.js`
 
 Missing from plans:
 
-- `test/cli.test.js`
-- `test/integration.test.js`
+- None.
 
 ## Recommended Next Work
 
-1. Finish the missing tests from `2026-05-19-json-reader-errors-testing.md`, deciding first whether the CLI should keep the current default-data-directory creation behavior or switch to the injectable API from the plan.
+1. No plan gaps are currently obvious from the implemented source and test files.
