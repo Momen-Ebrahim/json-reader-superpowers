@@ -7,6 +7,14 @@ const test = require('node:test');
 const { renderDashboard } = require('../src/html');
 const { buildSite, cleanOutput } = require('../src/generator');
 
+test('CLI entrypoint exports main and source stylesheet exists', async () => {
+  const { main } = require('../src/index');
+  const stylesheet = await fs.readFile(path.join(__dirname, '..', 'src', 'assets', 'style.css'), 'utf8');
+
+  assert.equal(typeof main, 'function');
+  assert.match(stylesheet, /\.page-shell/);
+});
+
 test('renderDashboard returns an offline dashboard document', () => {
   const html = renderDashboard({
     stats: {
