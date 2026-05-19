@@ -182,3 +182,47 @@ test('renderDashboard URL-encodes slug href path segments', () => {
   assert.match(html, /href="javascript%3Aalert\(1\)%2F%2F\.html\?file=posts%20%26%20drafts\.json"/);
   assert.match(html, />javascript:alert\(1\)\/\/ \(1\)<\/a>/);
 });
+
+test('buildSite writes one page for each unique published slug', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-slugs-'));
+  const dataDir = path.join(fixtureRoot, 'data');
+  const outputDir = path.join(fixtureRoot, 'output');
+  const assetSourcePath = path.join(fixtureRoot, 'src', 'assets', 'style.css');
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+  await fs.writeFile(path.join(dataDir, 'posts.json'), JSON.stringify([
+    { title: 'Alpha', slug: 'alpha', date: '2026-05-18', content: 'Alpha body' },
+    { title: 'Beta Draft', slug: 'beta', date: '2026-05-18', content: 'Draft body', draft: true },
+  ]));
+
+  await buildSite({ dataDir, outputDir, assetSourcePath });
+
+  const alpha = await fs.readFile(path.join(outputDir, 'alpha.html'), 'utf8');
+  await assert.rejects(fs.readFile(path.join(outputDir, 'beta.html'), 'utf8'), /ENOENT/);
+  assert.match(alpha, /<h1>alpha<\/h1>/);
+  assert.match(alpha, /Alpha body/);
+  assert.doesNotMatch(alpha, /Draft body/);
+});
+
+test('buildSite writes encoded slug file names inside the output directory', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-encoded-slugs-'));
+  const dataDir = path.join(fixtureRoot, 'data');
+  const outputDir = path.join(fixtureRoot, 'output');
+  const assetSourcePath = path.join(fixtureRoot, 'src', 'assets', 'style.css');
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+  await fs.writeFile(path.join(dataDir, 'posts.json'), JSON.stringify([
+    { title: 'Unsafe', slug: 'javascript:alert(1)//', date: '2026-05-18', content: 'Unsafe body' },
+    { title: 'Traversal', slug: '../outside', date: '2026-05-18', content: 'Traversal body' },
+  ]));
+
+  await buildSite({ dataDir, outputDir, assetSourcePath });
+
+  const unsafe = await fs.readFile(path.join(outputDir, 'javascript%3Aalert(1)%2F%2F.html'), 'utf8');
+  const traversal = await fs.readFile(path.join(outputDir, '..%2Foutside.html'), 'utf8');
+  await assert.rejects(fs.readFile(path.join(fixtureRoot, 'outside.html'), 'utf8'), /ENOENT/);
+  assert.match(unsafe, /Unsafe body/);
+  assert.match(traversal, /Traversal body/);
+});
