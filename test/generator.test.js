@@ -121,3 +121,64 @@ test('buildSite rejects output directory that contains data path with dot-dot pr
 test('cleanOutput rejects empty output directory', async () => {
   await assert.rejects(cleanOutput(''), /Unsafe output directory/);
 });
+
+test('buildSite rejects empty output directory', async () => {
+  await assert.rejects(buildSite({ outputDir: '' }), /Unsafe output directory/);
+});
+
+test('buildSite rejects null output directory', async () => {
+  await assert.rejects(buildSite({ outputDir: null }), /Unsafe output directory/);
+});
+
+test('renderDashboard links slug cards and per-file slug counts', () => {
+  const html = renderDashboard({
+    stats: {
+      filesRead: 1,
+      validObjects: 2,
+      publishedObjects: 2,
+      draftObjects: 0,
+      uniquePublishedSlugs: 1,
+      warningCount: 0,
+    },
+    warnings: [],
+    slugGroups: new Map([['alpha', [{ title: 'A' }, { title: 'B' }]]]),
+    fileSummaries: [{
+      fileName: 'posts.json',
+      validObjects: 2,
+      publishedObjects: 2,
+      draftObjects: 0,
+      publishedSlugCounts: new Map([['alpha', 2]]),
+    }],
+  });
+
+  assert.match(html, /href="alpha\.html"/);
+  assert.match(html, /href="alpha\.html\?file=posts\.json"/);
+  assert.match(html, /alpha \(2\)/);
+});
+
+test('renderDashboard URL-encodes slug href path segments', () => {
+  const html = renderDashboard({
+    stats: {
+      filesRead: 1,
+      validObjects: 1,
+      publishedObjects: 1,
+      draftObjects: 0,
+      uniquePublishedSlugs: 1,
+      warningCount: 0,
+    },
+    warnings: [],
+    slugGroups: new Map([['javascript:alert(1)//', [{ title: 'Unsafe slug' }]]]),
+    fileSummaries: [{
+      fileName: 'posts & drafts.json',
+      validObjects: 1,
+      publishedObjects: 1,
+      draftObjects: 0,
+      publishedSlugCounts: new Map([['javascript:alert(1)//', 1]]),
+    }],
+  });
+
+  assert.doesNotMatch(html, /href="javascript:alert\(1\)\/\/\.html"/);
+  assert.match(html, /href="javascript%3Aalert\(1\)%2F%2F\.html"/);
+  assert.match(html, /href="javascript%3Aalert\(1\)%2F%2F\.html\?file=posts%20%26%20drafts\.json"/);
+  assert.match(html, />javascript:alert\(1\)\/\/ \(1\)<\/a>/);
+});

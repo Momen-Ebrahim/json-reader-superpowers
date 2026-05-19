@@ -9,7 +9,7 @@ function escapeHtml(value) {
 
 function renderDashboard({ stats, warnings, slugGroups, fileSummaries }) {
   const slugCards = Array.from(slugGroups.entries())
-    .map(([slug, objects]) => `<a class="slug-card" href="${escapeHtml(slug)}.html"><strong>${escapeHtml(slug)}</strong><span>${objects.length} published objects</span></a>`)
+    .map(([slug, objects]) => `<a class="slug-card" href="${encodeURIComponent(slug)}.html"><strong>${escapeHtml(slug)}</strong><span>${objects.length} published objects</span></a>`)
     .join('');
 
   const warningItems = warnings
@@ -17,7 +17,13 @@ function renderDashboard({ stats, warnings, slugGroups, fileSummaries }) {
     .join('');
 
   const fileRows = fileSummaries
-    .map((file) => `<tr><td>${escapeHtml(file.fileName)}</td><td>${file.validObjects}</td><td>${file.publishedObjects}</td><td>${file.draftObjects}</td><td>${escapeHtml(file.slugSummary)}</td></tr>`)
+    .map((file) => {
+      const slugLinks = Array.from(file.publishedSlugCounts.entries())
+        .map(([slug, count]) => `<a href="${encodeURIComponent(slug)}.html?file=${encodeURIComponent(file.fileName)}">${escapeHtml(slug)} (${count})</a>`)
+        .join(', ');
+
+      return `<tr><td>${escapeHtml(file.fileName)}</td><td>${file.validObjects}</td><td>${file.publishedObjects}</td><td>${file.draftObjects}</td><td>${slugLinks || 'No published slugs'}</td></tr>`;
+    })
     .join('');
 
   return `<!doctype html>
