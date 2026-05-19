@@ -32,3 +32,9 @@ test('stylesheet has no external imports or remote asset references', async () =
   assert.doesNotMatch(css, /@import/i);
   assert.doesNotMatch(css, /https?:\/\//i);
 });
+
+test('stylesheet hides filtered cards when scripts set the hidden attribute', async () => {
+  const css = await fs.readFile('src/assets/style.css', 'utf8');
+
+  assert.match(css, /\[hidden\]\s*{[^}]*display:\s*none\s*!important;[^}]*}/);
+});
