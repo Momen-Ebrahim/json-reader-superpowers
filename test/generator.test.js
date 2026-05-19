@@ -5,7 +5,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const { renderDashboard } = require('../src/html');
-const { buildSite } = require('../src/generator');
+const { buildSite, cleanOutput } = require('../src/generator');
 
 test('renderDashboard returns an offline dashboard document', () => {
   const html = renderDashboard({
@@ -48,4 +48,30 @@ test('buildSite writes dashboard and stylesheet', async () => {
   assert.equal(result.stats.filesRead, 0);
   assert.match(dashboard, /JSON Reader Dashboard/);
   assert.equal(stylesheet, 'body { color: #111; }');
+});
+
+test('buildSite rejects output directory that overlaps input data', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-'));
+  const assetSourcePath = path.join(fixtureRoot, 'assets', 'style.css');
+  const dataDir = path.join(fixtureRoot, 'data');
+  const sentinelPath = path.join(dataDir, 'sentinel.json');
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+  await fs.writeFile(sentinelPath, '{}');
+
+  await assert.rejects(
+    buildSite({
+      dataDir,
+      outputDir: dataDir,
+      assetSourcePath,
+    }),
+    /Unsafe output directory/
+  );
+
+  assert.equal(await fs.readFile(sentinelPath, 'utf8'), '{}');
+});
+
+test('cleanOutput rejects empty output directory', async () => {
+  await assert.rejects(cleanOutput(''), /Unsafe output directory/);
 });

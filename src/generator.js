@@ -3,9 +3,23 @@ const path = require('node:path');
 
 const { renderDashboard } = require('./html');
 
+function validateOutputDir(outputDir) {
+  if (!outputDir || typeof outputDir !== 'string') {
+    throw new Error('Unsafe output directory');
+  }
+
+  const resolvedOutputDir = path.resolve(outputDir);
+  if (resolvedOutputDir === path.parse(resolvedOutputDir).root || resolvedOutputDir === process.cwd()) {
+    throw new Error('Unsafe output directory');
+  }
+
+  return resolvedOutputDir;
+}
+
 async function cleanOutput(outputDir) {
-  await fs.rm(outputDir, { recursive: true, force: true });
-  await fs.mkdir(path.join(outputDir, 'assets'), { recursive: true });
+  const resolvedOutputDir = validateOutputDir(outputDir);
+  await fs.rm(resolvedOutputDir, { recursive: true, force: true });
+  await fs.mkdir(path.join(resolvedOutputDir, 'assets'), { recursive: true });
 }
 
 async function copyStylesheet(assetSourcePath, outputDir) {
@@ -33,6 +47,19 @@ async function buildSite({
   outputDir = path.join(process.cwd(), 'output'),
   assetSourcePath = path.join(process.cwd(), 'src', 'assets', 'style.css'),
 } = {}) {
+  const resolvedOutputDir = validateOutputDir(outputDir);
+  const resolvedDataDir = path.resolve(dataDir);
+  const relativeDataPath = path.relative(resolvedOutputDir, resolvedDataDir);
+  const relativeOutputPath = path.relative(resolvedDataDir, resolvedOutputDir);
+  if (
+    relativeDataPath === '' ||
+    relativeOutputPath === '' ||
+    (!relativeDataPath.startsWith('..') && !path.isAbsolute(relativeDataPath)) ||
+    (!relativeOutputPath.startsWith('..') && !path.isAbsolute(relativeOutputPath))
+  ) {
+    throw new Error('Unsafe output directory');
+  }
+
   await cleanOutput(outputDir);
   await copyStylesheet(assetSourcePath, outputDir);
 
