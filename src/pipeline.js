@@ -46,7 +46,7 @@ function buildDataModel(dataDir = path.join(process.cwd(), 'data')) {
 }
 
 function groupPublishedObjectsBySlug(publishedObjects) {
-  const grouped = {};
+  const grouped = Object.create(null);
 
   for (const item of publishedObjects) {
     if (!grouped[item.slug]) {
@@ -55,7 +55,7 @@ function groupPublishedObjectsBySlug(publishedObjects) {
     grouped[item.slug].push(item);
   }
 
-  const sortedGroups = {};
+  const sortedGroups = Object.create(null);
   for (const slug of Object.keys(grouped).sort((a, b) => a.localeCompare(b))) {
     sortedGroups[slug] = grouped[slug].sort((a, b) => b.date.localeCompare(a.date));
   }
@@ -70,7 +70,7 @@ function ensureFileStats(fileStatsByName, fileName) {
       validObjects: 0,
       publishedObjects: 0,
       draftObjects: 0,
-      publishedSlugCounts: {}
+      publishedSlugCounts: Object.create(null)
     });
   }
 }

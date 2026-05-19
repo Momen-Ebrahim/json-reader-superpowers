@@ -6,6 +6,10 @@ const path = require('node:path');
 
 const { buildDataModel } = require('../src/pipeline');
 
+function slugMap(values = {}) {
+  return Object.assign(Object.create(null), values);
+}
+
 function makeDataDir() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'json-reader-'));
   const dataDir = path.join(root, 'data');
@@ -29,7 +33,7 @@ test('buildDataModel returns empty stats and a warning for a missing data direct
   });
   assert.deepEqual(model.validObjects, []);
   assert.deepEqual(model.publishedObjects, []);
-  assert.deepEqual(model.groupsBySlug, {});
+  assert.deepEqual(model.groupsBySlug, slugMap());
   assert.deepEqual(model.fileStats, []);
   assert.equal(model.warnings[0].type, 'missing-data-directory');
 });
@@ -132,18 +136,18 @@ test('buildDataModel returns dashboard-ready per-file stats with published slug 
       validObjects: 3,
       publishedObjects: 2,
       draftObjects: 1,
-      publishedSlugCounts: {
+      publishedSlugCounts: slugMap({
         notes: 2
-      }
+      })
     },
     {
       file: 'b.json',
       validObjects: 1,
       publishedObjects: 1,
       draftObjects: 0,
-      publishedSlugCounts: {
+      publishedSlugCounts: slugMap({
         guide: 1
-      }
+      })
     }
   ]);
 });
@@ -171,4 +175,33 @@ test('buildDataModel aggregates reader and validation warnings', () => {
     index: 0,
     message: 'invalid-object.json item 1 has invalid date: not-a-date'
   });
+});
+
+test('buildDataModel handles published slugs that match inherited object keys', () => {
+  const dataDir = makeDataDir();
+  fs.writeFileSync(path.join(dataDir, 'dangerous-slugs.json'), JSON.stringify([
+    {
+      title: 'Constructor Slug',
+      slug: 'constructor',
+      date: '2026-05-18',
+      content: 'Uses constructor as a slug'
+    },
+    {
+      title: 'Proto Slug',
+      slug: '__proto__',
+      date: '2026-05-19',
+      content: 'Uses __proto__ as a slug'
+    }
+  ]));
+
+  let model;
+  assert.doesNotThrow(() => {
+    model = buildDataModel(dataDir);
+  });
+
+  assert.deepEqual(Object.keys(model.groupsBySlug), ['__proto__', 'constructor']);
+  assert.deepEqual(model.groupsBySlug.constructor.map((item) => item.title), ['Constructor Slug']);
+  assert.deepEqual(model.groupsBySlug.__proto__.map((item) => item.title), ['Proto Slug']);
+  assert.equal(model.fileStats[0].publishedSlugCounts.constructor, 1);
+  assert.equal(model.fileStats[0].publishedSlugCounts.__proto__, 1);
 });
