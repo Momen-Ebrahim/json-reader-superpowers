@@ -254,3 +254,52 @@ test('buildSite writes encoded slug file names inside the output directory', asy
   assert.match(traversal, /Traversal body/);
   assert.match(wildcard, /Wildcard body/);
 });
+
+test('buildSite deletes old generated files before writing new output', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-clean-'));
+  const dataDir = path.join(fixtureRoot, 'data');
+  const outputDir = path.join(fixtureRoot, 'output');
+  const assetSourcePath = path.join(fixtureRoot, 'src', 'assets', 'style.css');
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.mkdir(path.join(outputDir, 'assets'), { recursive: true });
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.writeFile(path.join(outputDir, 'old.html'), 'stale');
+  await fs.writeFile(path.join(outputDir, 'assets', 'old.css'), 'stale');
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+
+  await buildSite({ dataDir, outputDir, assetSourcePath });
+
+  await assert.rejects(fs.readFile(path.join(outputDir, 'old.html'), 'utf8'), /ENOENT/);
+  await assert.rejects(fs.readFile(path.join(outputDir, 'assets', 'old.css'), 'utf8'), /ENOENT/);
+  assert.equal(await fs.readFile(path.join(outputDir, 'assets', 'style.css'), 'utf8'), 'body { color: #111; }');
+});
+
+test('generated HTML links only to the shared local stylesheet', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-assets-'));
+  const dataDir = path.join(fixtureRoot, 'data');
+  const outputDir = path.join(fixtureRoot, 'output');
+  const assetSourcePath = path.join(fixtureRoot, 'src', 'assets', 'style.css');
+  await fs.mkdir(dataDir, { recursive: true });
+  await fs.mkdir(path.dirname(assetSourcePath), { recursive: true });
+  await fs.writeFile(assetSourcePath, 'body { color: #111; }');
+  await fs.writeFile(path.join(dataDir, 'posts.json'), JSON.stringify({
+    title: 'Alpha',
+    slug: 'alpha',
+    date: '2026-05-18',
+    content: 'Alpha body',
+  }));
+
+  await buildSite({ dataDir, outputDir, assetSourcePath });
+
+  const dashboard = await fs.readFile(path.join(outputDir, 'dashboard.html'), 'utf8');
+  const slug = await fs.readFile(path.join(outputDir, 'alpha.html'), 'utf8');
+  const stylesheetHrefs = (html) => [...html.matchAll(/<link\b[^>]*>/gi)]
+    .filter((match) => /\brel\s*=\s*(['"])stylesheet\1/i.test(match[0]))
+    .map((match) => match[0].match(/\bhref\s*=\s*(['"])([^'"]+)\1/i)?.[2])
+    .filter(Boolean);
+
+  assert.deepEqual(stylesheetHrefs(dashboard), ['assets/style.css']);
+  assert.deepEqual(stylesheetHrefs(slug), ['assets/style.css']);
+  assert.doesNotMatch(dashboard + slug, /\b(?:href|src)\s*=\s*["'](?:https?:)?\/\//i);
+  assert.doesNotMatch(dashboard + slug, /<script\b[^>]*\bsrc\s*=/i);
+});

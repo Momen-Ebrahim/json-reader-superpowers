@@ -11,7 +11,7 @@ This progress file is based on the current source and test files, not the unchec
 | `2026-05-19-json-reader-static-generator-design.md` | Mostly done | Package scripts, dashboard renderer, generator orchestration, CLI entrypoint, source stylesheet | None obvious from this plan; implementation includes extra output-safety checks |
 | `2026-05-19-json-reader-architecture-data.md` | Done | JSON reader, validator, build-state collection, dashboard slug/file links | None obvious from this plan |
 | `2026-05-19-json-reader-generated-pages.md` | Done | `renderSlugPage`, safe JSON embedding, generated slug HTML files, slug-page tests, URL query behavior, encoded slug filenames | None obvious from this plan; implementation includes extra filename-safety coverage |
-| `2026-05-19-json-reader-output-styling.md` | Partial | Output cleanup implementation exists, dashboard uses local stylesheet, basic responsive dashboard CSS exists | Planned cleanup/local asset tests, slug-page styles, `style.test.js`, final responsive CSS |
+| `2026-05-19-json-reader-output-styling.md` | Done | Cleanup regression test, local asset-link assertions, slug-page/dashboard responsive CSS, `style.test.js`, regenerated output stylesheet | None obvious from this plan |
 | `2026-05-19-json-reader-errors-testing.md` | Partial | Reader warnings, validation warnings, dashboard warning rendering, draft exclusion in core pipeline | Missing planned tests, injectable CLI logger/build options, integration test, slug-page related behavior |
 
 ## Plan Details
@@ -76,28 +76,27 @@ Notes:
 
 ### `2026-05-19-json-reader-output-styling.md`
 
-Status: partial.
+Status: done.
 
 Implemented:
 
 - Task 1: `cleanOutput` removes the output directory and recreates `assets/`.
-- Task 1: Existing generator tests include output safety checks, but not the exact stale-file cleanup regression test from the plan.
-- Task 2: `renderDashboard` links to `assets/style.css`.
-- Task 3: `src/assets/style.css` has basic dashboard layout, table styling, and mobile table behavior.
+- Task 1: `test/generator.test.js` covers deleting stale generated files before writing new output and copying `assets/style.css`.
+- Task 2: `test/generator.test.js` verifies generated dashboard and slug pages link only to the shared local stylesheet, with no remote asset references or script `src`.
+- Task 3: `src/assets/style.css` includes the complete responsive dashboard and slug-page CSS from the plan.
+- Task 3: `test/style.test.js` verifies required dashboard/slug selectors and checks for no `@import` or remote CSS references.
+- Task 3: `output/assets/style.css` has been regenerated from `src/assets/style.css`.
 
 Remaining:
 
-- Task 1: Add the planned stale-file cleanup regression test.
-- Task 2: Add the planned local asset assertions for generated dashboard and slug pages.
-- Task 3: Add slug-page CSS selectors such as `.filter-panel`, `.content-grid`, `.content-card`, `.content-body`, `.tags`, and `.empty-state`.
-- Task 3: Create `test/style.test.js`.
-- Task 3: Replace or expand the stylesheet with the complete responsive CSS from the plan.
+- None obvious from this plan.
 
 Evidence:
 
-- `src/assets/style.css` does not currently include slug-page selectors like `.filter-panel`, `.content-card`, `.content-body`, `.tags`, or `.empty-state`.
-- No `test/style.test.js` exists.
-- Slug pages now exist, so slug-page asset-link assertions can be added.
+- `test/generator.test.js` includes `buildSite deletes old generated files before writing new output` and `generated HTML links only to the shared local stylesheet`.
+- `src/assets/style.css` includes slug-page selectors such as `.filter-panel`, `.content-card`, `.content-body`, `.tags`, and `.empty-state`.
+- `test/style.test.js` exists and covers required selectors plus offline-friendly CSS checks.
+- `npm test` passes with 33 tests, and `npm run build` regenerates the stylesheet successfully.
 
 ### `2026-05-19-json-reader-errors-testing.md`
 
@@ -133,14 +132,13 @@ Present:
 - `test/data-pipeline.test.js`
 - `test/generator.test.js`
 - `test/slug-page.test.js`
+- `test/style.test.js`
 
 Missing from plans:
 
-- `test/style.test.js`
 - `test/cli.test.js`
 - `test/integration.test.js`
 
 ## Recommended Next Work
 
-1. Finish `2026-05-19-json-reader-output-styling.md` now that slug pages exist.
-2. Finish the missing tests from `2026-05-19-json-reader-errors-testing.md`, deciding first whether the CLI should keep the current default-data-directory creation behavior or switch to the injectable API from the plan.
+1. Finish the missing tests from `2026-05-19-json-reader-errors-testing.md`, deciding first whether the CLI should keep the current default-data-directory creation behavior or switch to the injectable API from the plan.
