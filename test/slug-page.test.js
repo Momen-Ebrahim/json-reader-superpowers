@@ -47,3 +47,13 @@ test('renderSlugPage embeds only the provided slug objects as JSON data', () => 
   assert.match(html, /"sourceFile":"posts\.json"/);
   assert.doesNotMatch(html, /draft":true/);
 });
+
+test('renderSlugPage script reads and updates the file query parameter', () => {
+  const html = renderSlugPage('alpha', objects);
+
+  assert.match(html, /new URLSearchParams\(window\.location\.search\)/);
+  assert.match(html, /params\.get\('file'\)/);
+  assert.match(html, /url\.searchParams\.set\('file', fileFilter\.value\)/);
+  assert.match(html, /url\.searchParams\.delete\('file'\)/);
+  assert.match(html, /window\.history\.replaceState\(null, '', url\)/);
+});
