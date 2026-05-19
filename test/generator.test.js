@@ -1,8 +1,12 @@
 const assert = require('node:assert/strict');
+const { execFile } = require('node:child_process');
 const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
+const { promisify } = require('node:util');
+
+const execFileAsync = promisify(execFile);
 
 const { renderDashboard } = require('../src/html');
 const { buildSite, cleanOutput } = require('../src/generator');
@@ -12,6 +16,17 @@ test('CLI entrypoint exports main and source stylesheet exists', async () => {
   const stylesheet = await fs.readFile(path.join(__dirname, '..', 'src', 'assets', 'style.css'), 'utf8');
 
   assert.equal(typeof main, 'function');
+  assert.match(stylesheet, /\.page-shell/);
+});
+
+test('CLI entrypoint finds bundled stylesheet from another cwd', async () => {
+  const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'json-reader-cli-'));
+  const cliPath = path.join(__dirname, '..', 'src', 'index.js');
+
+  const { stdout } = await execFileAsync(process.execPath, [cliPath], { cwd: fixtureRoot });
+  const stylesheet = await fs.readFile(path.join(fixtureRoot, 'output', 'assets', 'style.css'), 'utf8');
+
+  assert.match(stdout, /Generated dashboard\.html with 0 warnings\./);
   assert.match(stylesheet, /\.page-shell/);
 });
 

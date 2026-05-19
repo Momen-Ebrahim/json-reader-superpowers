@@ -1,7 +1,11 @@
+const path = require('node:path');
+
 const { buildSite } = require('./generator');
 
 async function main() {
-  const result = await buildSite();
+  const result = await buildSite({
+    assetSourcePath: path.join(__dirname, 'assets', 'style.css'),
+  });
 
   for (const warning of result.warnings) {
     console.warn(`Warning: ${warning}`);
